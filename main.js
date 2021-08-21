@@ -234,14 +234,102 @@ console.log(sentence)
 
 //Practice: Big Spenders
 const bigSpenders = businesses.filter(business => {
-  let totalOrders = business.orders.reduce(
-    (currentTotal, nextValue) => currentTotal += nextValue,
-    0
-)
-  if (totalOrders > 9000) {
-    return business.companyName
-  }; 
-  
+  let spentOver9K = false;
+
+  if (business.orders >= 9000) {
+    spentOver9K = true;
+  }
+
+  return spentOver9K;
+
 });
 
 console.log(bigSpenders);
+
+
+//Practice: Planets - I did this on a separate file like directed but am putting it here for the submission
+const planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"]
+
+/*
+    Use the forEach method to add the name of each planet
+    to a section element in your HTML with an id of "planets".
+    Use string templates to construct the DOM elements.
+*/
+
+const planetEl = document.querySelector("#planets")
+
+planets.forEach(planet => {
+  planetEl.innerHTML += `
+  <section>${planet}</section>
+  `
+  planetEl.innerHTML += "<hr/>";
+})
+
+/*
+    Use the map method to create a new array where the
+    first letter of each planet is capitalized. Use the
+    `toUpperCase()` method on strings.
+
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
+*/
+
+const capPlanets = planets.map(planet => {
+  return planet.charAt(0).toUpperCase() + planet.slice(1)
+})
+
+console.log(capPlanets);
+
+/*
+    Use the filter method to create a new array that
+    contains planets with the letter 'e'. Use the `includes()`
+    method on strings.
+
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+*/
+
+const planetsWithE = planets.filter(planet => {
+  let planetHasE = false;
+
+  if (planet.includes('e')) {
+    planetHasE = true;
+  }
+
+  return planetHasE;
+})
+
+console.log(planetsWithE);
+
+//Practice: Spam, Spam, Spam, Spam - I did this in a separate file as well but here's the code for the submission
+
+const spamElement = document.querySelector("#emails");
+
+let customerContacts = customers.map(customer => {
+  return customer.contacts;
+});
+
+console.log(customerContacts);
+
+let customerEmails = customerContacts.map(customer => {
+  return customer.email;
+});
+
+console.log(customerEmails);
+
+customerEmails.forEach(email => {
+  email.forEach(element => {
+    spamElement.innerHTML += `<h2>${element}</h2>`
+  });
+});
+
+//Chaining Methods - did this in separate file also like instructed but here is code for the submission
+const integers = [13, 25, 6, 3, 11, 2, 18, 7, 21, 1, 29, 20, 12, 8];
+
+const descending = integers.sort((a, b) => a > b ? -1 : 1);
+
+const removeGreaterThan19 = descending.filter(number => number <= 19);
+
+const multiplyByAndThenSubtract = removeGreaterThan19.map(number => {return (number * 1.5) -1});
+
+const sumOfRemainingNumbers = multiplyByAndThenSubtract.reduce((currentTotal, nextValue) => currentTotal += nextValue, 0);
+
+console.log(sumOfRemainingNumbers);
