@@ -111,6 +111,7 @@ const businesses = [
   },
 ];
 
+//forEach method + lightning exercise
 const outEl = document.querySelector("#output");
 outEl.innerHTML = "<h1>Active Businesses</h1>";
 
@@ -127,6 +128,7 @@ businesses.forEach((business) => {
   outEl.innerHTML += "<hr/>";
 });
 
+//filter method
 const newYorkBusinesses = businesses.filter((business) => {
   let inNewYork = false;
 
@@ -139,6 +141,7 @@ const newYorkBusinesses = businesses.filter((business) => {
 
 outEl.innerHTML += "<h1>Manufacturing Businesses</h1>";
 
+//filter lightning exercise
 const manufacturingBusinesses = businesses.filter((businesses) => {
   let manufacturingBiz = false;
 
@@ -154,6 +157,8 @@ manufacturingBusinesses.forEach((business) => {
   outEl.innerHTML += "<hr/>";
 });
 
+
+//map exercise
 outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 
 const agents = businesses.map((business) => {
@@ -167,33 +172,39 @@ agents.forEach((agent) => {
   outEl.innerHTML += "<hr/>";
 });
 
-//this doesn't work - skipping to .find
-// const newAgentObj = businesses.map(business => {
-//   const newObj = {
-//   purchasingAgent: business.purchasingAgent[1],
-//   companyname: business.companyName,
-//   phoneWork: business.phoneWork,
-// }
+//map lightning exercise
+const agentObj = businesses.map(business => (
+  {'fullName': business.purchasingAgent, 'company': business.companyName, 'phoneNumber': business.phoneWork}
+  ));
+
+console.table(agentObj);
+
+//this doesn't work yet - got .map to make a new obj but can't get it to render to dom correctly below
+// agentObj.forEach((newObj) => {
+//   outEl.innerHTML += `<h2>${newObj.purchasingAgent}</h2>
+//   <section>
+//   ${newObj.companyName}
+//   </section>
+//   <section>
+//   ${newObj.phoneWork}
+//   </section>`;
+//   outEl.innerHTML += "<hr/>";
 // });
 
-// console.log(newAgentObj);
-
+//find exercise - also not working - come back to this
 document
-  .querySelector("#companySearch")
-  .addEventListener("keypress", keyPressEvent => {
+  .querySelector('#companySearch')
+  .addEventListener('keypress', keyPressEvent => {
     if (keyPressEvent.charCode === 13) {
-      const foundBusiness = businesses.find(
-        business =>
-        business.companyName.includes(keyPressEvent.target.value)
+      const foundBusiness = businesses.find(business => business.companyName.includes(keyPressEvent.target.value)
       );
-
-      outEl.innerHTML = `
+      
+    outEl.innerHTML = `
         <h2>
         ${foundBusiness.companyName}
         </h2>
         <section>
         ${foundBusiness.addressFullStreet}
-
         </section>
         <section>
         ${foundBusiness.addressCity},
@@ -202,4 +213,36 @@ document
         </section>
       `;
     }
-  });
+});
+
+//reduce lightning exercises
+//#1
+const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
+
+const totalRainfall = monthlyRainfall.reduce((currentTotal, nextValue) => currentTotal += nextValue, 0
+)
+
+console.log(totalRainfall)
+
+//#2
+const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+
+const sentence = words.reduce(
+  (currentWord, nextWord) => currentWord += nextWord, ""
+)
+
+console.log(sentence)
+
+//Practice: Big Spenders
+const bigSpenders = businesses.filter(business => {
+  let totalOrders = business.orders.reduce(
+    (currentTotal, nextValue) => currentTotal += nextValue,
+    0
+)
+  if (totalOrders > 9000) {
+    return business.companyName
+  }; 
+  
+});
+
+console.log(bigSpenders);
