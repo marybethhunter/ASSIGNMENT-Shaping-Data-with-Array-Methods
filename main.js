@@ -174,24 +174,23 @@ agents.forEach((agent) => {
 
 //map lightning exercise
 const agentObj = businesses.map(business => (
-  {'fullName': business.purchasingAgent, 'company': business.companyName, 'phoneNumber': business.phoneWork}
+  {'fullName': business.purchasingAgent['nameFirst'] + " " + business.purchasingAgent['nameLast'], 'company': business.companyName, 'phoneNumber': business.phoneWork}
   ));
 
 console.table(agentObj);
 
-//this doesn't work yet - got .map to make a new obj but can't get it to render to dom correctly below
-// agentObj.forEach((newObj) => {
-//   outEl.innerHTML += `<h2>${newObj.purchasingAgent}</h2>
-//   <section>
-//   ${newObj.companyName}
-//   </section>
-//   <section>
-//   ${newObj.phoneWork}
-//   </section>`;
-//   outEl.innerHTML += "<hr/>";
-// });
+agentObj.forEach((newObj) => {
+  outEl.innerHTML += `<h2>${newObj.fullName}</h2>
+  <section>
+  ${newObj.company}
+  </section>
+  <section>
+  ${newObj.phoneNumber}
+  </section>`;
+  outEl.innerHTML += "<hr/>";
+});
 
-//find exercise - also not working - come back to this
+//find exercise
 document
   .querySelector('#companySearch')
   .addEventListener('keypress', keyPressEvent => {
