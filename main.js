@@ -299,5 +299,37 @@ const planetsWithE = planets.filter(planet => {
 
 console.log(planetsWithE);
 
-//Practice: Spam, Spam, Spam, Spam
+//Practice: Spam, Spam, Spam, Spam - I did this in a separate file as well but here's the code for the submission
 
+const spamElement = document.querySelector("#emails");
+
+let customerContacts = customers.map(customer => {
+  return customer.contacts;
+});
+
+console.log(customerContacts);
+
+let customerEmails = customerContacts.map(customer => {
+  return customer.email;
+});
+
+console.log(customerEmails);
+
+customerEmails.forEach(email => {
+  email.forEach(element => {
+    spamElement.innerHTML += `<h2>${element}</h2>`
+  });
+});
+
+//Chaining Methods - did this in separate file also like instructed but here is code for the submission
+const integers = [13, 25, 6, 3, 11, 2, 18, 7, 21, 1, 29, 20, 12, 8];
+
+const descending = integers.sort((a, b) => a > b ? -1 : 1);
+
+const removeGreaterThan19 = descending.filter(number => number <= 19);
+
+const multiplyByAndThenSubtract = removeGreaterThan19.map(number => {return (number * 1.5) -1});
+
+const sumOfRemainingNumbers = multiplyByAndThenSubtract.reduce((currentTotal, nextValue) => currentTotal += nextValue, 0);
+
+console.log(sumOfRemainingNumbers);
