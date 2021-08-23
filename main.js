@@ -233,16 +233,7 @@ const sentence = words.reduce(
 console.log(sentence)
 
 //Practice: Big Spenders
-const bigSpenders = businesses.filter(business => {
-  let spentOver9K = false;
-
-  if (business.orders >= 9000) {
-    spentOver9K = true;
-  }
-
-  return spentOver9K;
-
-});
+bigSpenders = businesses.filter(business => business.orders.find(order => order >= 9000));
 
 console.log(bigSpenders);
 
