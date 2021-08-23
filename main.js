@@ -237,7 +237,6 @@ bigSpenders = businesses.filter(business => business.orders.find(order => order 
 
 console.log(bigSpenders);
 
-
 //Practice: Planets - I did this on a separate file like directed but am putting it here for the submission
 const planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"]
 
